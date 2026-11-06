@@ -1,305 +1,473 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Toy Shopes | Toys for every kind of play</title>
-<meta name="description" content="Teddy bears, trains, puzzles, robots and more. Find the toy that makes playtime the best time of the day.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧸</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --cream: #fff8ec;
-    --ink: #1f2a44;
-    --ink-soft: #4a5470;
-    --red: #f2542d;
-    --yellow: #ffc93c;
-    --teal: #2ec4b6;
-    --blue: #6aa9ff;
-    --pink: #ff9ec7;
-    --white: #ffffff;
-    --border: 3px solid var(--ink);
-    --radius: 20px;
-    color-scheme: light;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cofe Shope — Coffee Made Simple</title>
+  <meta name="description" content="Cofe Shope: freshly roasted coffee, cozy seating, and handcrafted drinks.">
+  <style>
+    :root {
+      --cream: #fbf6ee;
+      --espresso: #2b1d14;
+      --latte: #c8a27a;
+      --caramel: #b9733a;
+      --muted: #6e5a4b;
+      --card: #ffffff;
+    }
 
-  * { box-sizing: border-box; margin: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--cream);
-    color: var(--ink);
-    font-family: "Nunito", system-ui, sans-serif;
-    font-size: 1.0625rem;
-    line-height: 1.55;
-  }
-  h1, h2, h3, .logo { font-family: "Fredoka", "Nunito", system-ui, sans-serif; line-height: 1.1; }
-  a { color: inherit; }
-  :focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+    html { scroll-behavior: smooth; }
 
-  /* Header */
-  header { padding-block: 18px; }
-  .bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  .logo { font-size: 1.6rem; font-weight: 700; text-decoration: none; }
-  nav { display: flex; align-items: center; gap: 24px; }
-  nav a { font-weight: 800; text-decoration: none; }
-  nav a:hover { text-decoration: underline; text-decoration-thickness: 3px; }
-  .cart {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 6px 14px;
-    background: var(--white);
-    border: var(--border);
-    border-radius: 999px;
-    font-weight: 800;
-  }
+    body {
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--cream);
+      color: var(--espresso);
+      line-height: 1.6;
+    }
 
-  /* Buttons */
-  .btn {
-    display: inline-block;
-    padding: 14px 26px;
-    background: var(--yellow);
-    color: var(--ink);
-    border: var(--border);
-    border-radius: 14px;
-    box-shadow: 5px 5px 0 var(--ink);
-    font: 700 1.125rem "Fredoka", "Nunito", system-ui, sans-serif;
-    text-decoration: none;
-    cursor: pointer;
-    transition: transform .12s, box-shadow .12s;
-  }
-  .btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
-  .btn:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--ink); }
+    a { color: inherit; text-decoration: none; }
 
-  /* Hero */
-  .hero { padding-block: 40px 72px; }
-  .hero-grid { display: grid; gap: 48px; align-items: center; }
-  .hero h1 { font-size: clamp(2.6rem, 7vw, 4.75rem); font-weight: 700; }
-  .hero h1 em { font-style: normal; color: var(--red); }
-  .hero p { margin-block: 20px 30px; max-width: 46ch; font-size: 1.2rem; color: var(--ink-soft); }
+    .container {
+      width: min(1100px, 100% - 32px);
+      margin-inline: auto;
+    }
 
-  .blocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 460px; margin-inline: auto; width: 100%; }
-  .block {
-    display: grid; place-items: center;
-    aspect-ratio: 1;
-    border: var(--border);
-    border-radius: var(--radius);
-    box-shadow: 5px 5px 0 var(--ink);
-    font-size: clamp(2.2rem, 9vw, 3.6rem);
-    animation: bob 3.2s ease-in-out infinite;
-  }
-  .block:nth-child(2) { animation-delay: -.5s; }
-  .block:nth-child(3) { animation-delay: -1s; }
-  .block:nth-child(4) { animation-delay: -1.5s; }
-  .block:nth-child(5) { animation-delay: -2s; }
-  .block:nth-child(6) { animation-delay: -2.5s; }
-  @keyframes bob {
-    50% { transform: translateY(-8px) rotate(-2deg); }
-  }
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(251, 246, 238, 0.95);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid #ead9c4;
+    }
 
-  .bg-red { background: var(--red); }
-  .bg-yellow { background: var(--yellow); }
-  .bg-teal { background: var(--teal); }
-  .bg-blue { background: var(--blue); }
-  .bg-pink { background: var(--pink); }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
 
-  /* Toys */
-  section h2 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; }
-  .toys { padding-block: 16px 72px; }
-  .section-lead { margin-block: 8px 32px; color: var(--ink-soft); }
-  .toy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 26px; }
-  .toy {
-    display: flex; flex-direction: column;
-    background: var(--white);
-    border: var(--border);
-    border-radius: var(--radius);
-    box-shadow: 6px 6px 0 var(--ink);
-    overflow: hidden;
-  }
-  .toy-pic {
-    display: grid; place-items: center;
-    height: 170px;
-    border-bottom: var(--border);
-    font-size: 5rem;
-  }
-  .toy-body { display: flex; flex-direction: column; flex: 1; gap: 4px; padding: 18px; }
-  .toy h3 { font-size: 1.35rem; font-weight: 500; }
-  .age { color: var(--ink-soft); font-size: .95rem; }
-  .toy-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; padding-top: 14px; }
-  .price { font: 700 1.35rem "Fredoka", "Nunito", system-ui, sans-serif; }
-  .add {
-    padding: 8px 14px;
-    background: var(--ink);
-    color: var(--white);
-    border: 0;
-    border-radius: 10px;
-    font: 800 .95rem "Nunito", system-ui, sans-serif;
-    cursor: pointer;
-  }
-  .add:hover { background: #33415f; }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
 
-  /* Why */
-  .why { padding-block: 64px; background: var(--teal); border-block: var(--border); }
-  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px; margin-top: 28px; }
-  .why-icon { font-size: 2.6rem; }
-  .why h3 { margin-block: 6px; font-size: 1.4rem; font-weight: 500; }
+    .logo span { color: var(--caramel); }
 
-  /* Call to action */
-  .cta { padding-block: 72px; text-align: center; }
-  .cta p { margin-block: 12px 28px; color: var(--ink-soft); }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
 
-  footer { padding-block: 24px; border-top: var(--border); font-size: .95rem; text-align: center; }
+    .nav-links a {
+      font-weight: 500;
+      transition: color 0.2s;
+    }
 
-  @media (min-width: 820px) {
-    .hero-grid { grid-template-columns: 1.15fr 1fr; }
-  }
-  @media (max-width: 560px) {
-    nav a { display: none; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    .block { animation: none; }
-    .btn { transition: none; }
-  }
-</style>
+    .nav-links a:hover { color: var(--caramel); }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 26px;
+      border-radius: 999px;
+      background: var(--caramel);
+      color: #fff;
+      font-weight: 600;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .btn:hover {
+      background: #9c5d2c;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--espresso);
+      border: 2px solid var(--espresso);
+    }
+
+    .btn-outline:hover {
+      background: var(--espresso);
+      color: var(--cream);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 90px 0 80px;
+      background:
+        radial-gradient(circle at 85% 20%, #f0dcc2 0, transparent 40%),
+        var(--cream);
+    }
+
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--caramel);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+      max-width: 480px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+    }
+
+    .cup {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #8a5a3b, #3b2415);
+      box-shadow: 0 30px 60px rgba(43, 29, 20, 0.25), inset 0 -20px 40px rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      position: relative;
+    }
+
+    .cup::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 50%;
+      border: 2px dashed rgba(251, 246, 238, 0.25);
+    }
+
+    /* Sections */
+    section { padding: 80px 0; }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      margin-bottom: 10px;
+    }
+
+    .section-title p { color: var(--muted); }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .feature {
+      background: var(--card);
+      padding: 32px 28px;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(43, 29, 20, 0.06);
+      text-align: center;
+    }
+
+    .feature .icon { font-size: 2.4rem; margin-bottom: 14px; }
+
+    .feature h3 { margin-bottom: 8px; }
+
+    .feature p { color: var(--muted); font-size: 0.97rem; }
+
+    /* Menu */
+    .menu { background: #f4eadc; }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+
+    .menu-item {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      border-left: 4px solid var(--caramel);
+    }
+
+    .menu-item h3 { font-size: 1.1rem; margin-bottom: 4px; }
+
+    .menu-item p { color: var(--muted); font-size: 0.92rem; }
+
+    .price {
+      font-weight: 700;
+      color: var(--caramel);
+      white-space: nowrap;
+    }
+
+    /* About */
+    .about .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .about-box {
+      background: var(--espresso);
+      color: var(--cream);
+      border-radius: 24px;
+      padding: 56px 40px;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .about-box strong {
+      display: block;
+      font-size: 3rem;
+      color: var(--latte);
+      font-weight: 700;
+    }
+
+    .about h2 { font-size: clamp(1.8rem, 3.5vw, 2.4rem); margin-bottom: 16px; }
+
+    .about p { color: var(--muted); margin-bottom: 16px; }
+
+    /* Contact / CTA */
+    .cta {
+      background: var(--caramel);
+      color: #fff;
+      text-align: center;
+      border-radius: 28px;
+      padding: 64px 32px;
+      margin: 0 auto 80px;
+    }
+
+    .cta h2 { font-size: clamp(1.8rem, 3.5vw, 2.4rem); margin-bottom: 12px; }
+
+    .cta p { opacity: 0.92; margin-bottom: 28px; }
+
+    .cta .btn {
+      background: #fff;
+      color: var(--espresso);
+    }
+
+    .cta .btn:hover { background: var(--cream); }
+
+    footer {
+      background: var(--espresso);
+      color: #d9c6b1;
+      padding: 40px 0;
+      font-size: 0.95rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-inner strong { color: #fff; }
+
+    /* Responsive */
+    @media (max-width: 800px) {
+      .hero .container,
+      .about .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero p { margin-inline: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-visual { order: -1; }
+      .cup { width: 220px; height: 220px; font-size: 4.5rem; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero { padding: 60px 0; }
+      section { padding: 60px 0; }
+      .cta { padding: 48px 22px; }
+    }
+  </style>
 </head>
 <body>
 
-<header class="wrap bar">
-  <a class="logo" href="#top">🧸 Toy Shopes</a>
-  <nav aria-label="Main">
-    <a href="#toys">Toys</a>
-    <a href="#why">Why us</a>
-    <span class="cart" aria-live="polite">🛒 <span id="cart-count">0</span> in cart</span>
-  </nav>
-</header>
-
-<main id="top">
-
-  <section class="hero wrap hero-grid">
-    <div>
-      <h1>Playtime just got <em>way</em> better.</h1>
-      <p>Cuddly bears, speedy trains, tricky puzzles and friendly robots. Find the toy that keeps them playing all day long.</p>
-      <a class="btn" href="#toys">Shop the toys</a>
+  <header>
+    <div class="container nav">
+      <a href="#" class="logo">Cofe<span>Shope</span></a>
+      <ul class="nav-links">
+        <li><a href="#features">Why Us</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+      <a href="#visit" class="btn">Visit Us</a>
     </div>
-    <div class="blocks" aria-hidden="true">
-      <div class="block bg-yellow">🧸</div>
-      <div class="block bg-teal">🚂</div>
-      <div class="block bg-pink">🦖</div>
-      <div class="block bg-blue">🤖</div>
-      <div class="block bg-red">🧩</div>
-      <div class="block bg-yellow">🪁</div>
-    </div>
-  </section>
+  </header>
 
-  <section class="toys wrap" id="toys">
-    <h2>Our favorite toys</h2>
-    <p class="section-lead">A little something for every kind of play.</p>
-    <div class="toy-grid">
-
-      <article class="toy">
-        <div class="toy-pic bg-yellow" aria-hidden="true">🧸</div>
-        <div class="toy-body">
-          <h3>Cuddle Teddy Bear</h3>
-          <span class="age">All ages</span>
-          <div class="toy-foot"><span class="price">$24</span><button class="add" type="button">Add to cart</button></div>
-        </div>
-      </article>
-
-      <article class="toy">
-        <div class="toy-pic bg-teal" aria-hidden="true">🚂</div>
-        <div class="toy-body">
-          <h3>Wooden Train Set</h3>
-          <span class="age">Ages 3+</span>
-          <div class="toy-foot"><span class="price">$39</span><button class="add" type="button">Add to cart</button></div>
-        </div>
-      </article>
-
-      <article class="toy">
-        <div class="toy-pic bg-blue" aria-hidden="true">🤖</div>
-        <div class="toy-body">
-          <h3>Walking Robot Buddy</h3>
-          <span class="age">Ages 5+</span>
-          <div class="toy-foot"><span class="price">$45</span><button class="add" type="button">Add to cart</button></div>
-        </div>
-      </article>
-
-      <article class="toy">
-        <div class="toy-pic bg-red" aria-hidden="true">🧩</div>
-        <div class="toy-body">
-          <h3>100-Piece Jungle Puzzle</h3>
-          <span class="age">Ages 6+</span>
-          <div class="toy-foot"><span class="price">$18</span><button class="add" type="button">Add to cart</button></div>
-        </div>
-      </article>
-
-      <article class="toy">
-        <div class="toy-pic bg-pink" aria-hidden="true">🦖</div>
-        <div class="toy-body">
-          <h3>Roaring Dino</h3>
-          <span class="age">Ages 3+</span>
-          <div class="toy-foot"><span class="price">$29</span><button class="add" type="button">Add to cart</button></div>
-        </div>
-      </article>
-
-      <article class="toy">
-        <div class="toy-pic bg-yellow" aria-hidden="true">🪁</div>
-        <div class="toy-body">
-          <h3>Rainbow Kite</h3>
-          <span class="age">Ages 5+</span>
-          <div class="toy-foot"><span class="price">$15</span><button class="add" type="button">Add to cart</button></div>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <section class="why" id="why">
-    <div class="wrap">
-      <h2>Why families shop with us</h2>
-      <div class="why-grid">
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
         <div>
-          <div class="why-icon" aria-hidden="true">🎈</div>
-          <h3>Something for every age</h3>
-          <p>From first cuddly friends to brain-bending puzzles for bigger kids.</p>
+          <span class="tag">Fresh roasted every morning</span>
+          <h1>Coffee made the way it should be.</h1>
+          <p>Single-origin beans, carefully brewed drinks, and a warm corner to slow down. Stop by, grab a cup, and stay a while.</p>
+          <div class="hero-actions">
+            <a href="#menu" class="btn">See Our Menu</a>
+            <a href="#visit" class="btn btn-outline">Find Us</a>
+          </div>
         </div>
-        <div>
-          <div class="why-icon" aria-hidden="true">🛠️</div>
-          <h3>Made for real play</h3>
-          <p>Toys chosen to be dropped, raced, hugged and played with again tomorrow.</p>
-        </div>
-        <div>
-          <div class="why-icon" aria-hidden="true">🎁</div>
-          <h3>Easy to give</h3>
-          <p>Stuck on a birthday present? There's a perfect pick waiting right here.</p>
+        <div class="hero-visual">
+          <div class="cup" aria-hidden="true">☕</div>
         </div>
       </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features">
+      <div class="container">
+        <div class="section-title">
+          <h2>Why Cofe Shope?</h2>
+          <p>Small details that make every cup better.</p>
+        </div>
+        <div class="features">
+          <div class="feature">
+            <div class="icon">🌱</div>
+            <h3>Ethically Sourced</h3>
+            <p>We work directly with farmers to bring you beans that taste as good as they feel.</p>
+          </div>
+          <div class="feature">
+            <div class="icon">🔥</div>
+            <h3>Roasted In-House</h3>
+            <p>Small batches, roasted fresh every week, so every bag is full of flavor.</p>
+          </div>
+          <div class="feature">
+            <div class="icon">🛋️</div>
+            <h3>Cozy Atmosphere</h3>
+            <p>Comfortable seating, free Wi-Fi, and a calm space for work, friends, or quiet thoughts.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="menu">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Favorites</h2>
+          <p>A few of the drinks our guests love most.</p>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div>
+              <h3>Classic Espresso</h3>
+              <p>Rich, bold, and smooth with a caramel finish.</p>
+            </div>
+            <span class="price">$3.00</span>
+          </div>
+          <div class="menu-item">
+            <div>
+              <h3>Vanilla Latte</h3>
+              <p>Velvety steamed milk, espresso, and house-made vanilla.</p>
+            </div>
+            <span class="price">$4.50</span>
+          </div>
+          <div class="menu-item">
+            <div>
+              <h3>Cold Brew</h3>
+              <p>Slow-steeped for 18 hours. Smooth, sweet, and refreshing.</p>
+            </div>
+            <span class="price">$4.00</span>
+          </div>
+          <div class="menu-item">
+            <div>
+              <h3>Caramel Macchiato</h3>
+              <p>Layered milk, espresso, and golden caramel drizzle.</p>
+            </div>
+            <span class="price">$4.75</span>
+          </div>
+          <div class="menu-item">
+            <div>
+              <h3>Fresh Croissant</h3>
+              <p>Buttery, flaky, and baked every morning.</p>
+            </div>
+            <span class="price">$3.25</span>
+          </div>
+          <div class="menu-item">
+            <div>
+              <h3>Matcha Latte</h3>
+              <p>Ceremonial-grade matcha with your choice of milk.</p>
+            </div>
+            <span class="price">$4.95</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about">
+      <div class="container">
+        <div>
+          <h2>A little shop with big coffee love.</h2>
+          <p>Cofe Shope started with one goal: make great coffee accessible to everyone in the neighborhood. Every drink is made by hand, with care, and with people in mind.</p>
+          <p>Whether you need a quick espresso before work or a long afternoon with a book, there is always a seat for you.</p>
+        </div>
+        <div class="about-box">
+          <strong>5,000+</strong>
+          happy cups served every month
+        </div>
+      </div>
+    </section>
+
+    <!-- Visit / CTA -->
+    <section id="visit">
+      <div class="container">
+        <div class="cta">
+          <h2>Come say hello.</h2>
+          <p>Open daily from 7:00 AM to 8:00 PM. Your next favorite cup is waiting.</p>
+          <a href="#" class="btn">Get Directions</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><strong>Cofe Shope</strong> · Coffee made simple.</div>
+      <div>© 2026 Cofe Shope. All rights reserved.</div>
     </div>
-  </section>
+  </footer>
 
-  <section class="cta wrap">
-    <h2>Got a birthday coming up?</h2>
-    <p>Make it one they'll remember. Pick a toy today.</p>
-    <a class="btn" href="#toys">Find the perfect toy</a>
-  </section>
-
-</main>
-
-<footer class="wrap">© 2026 Toy Shopes. Made for playing.</footer>
-
-<script>
-  var count = 0;
-  var countEl = document.getElementById('cart-count');
-  document.querySelectorAll('.add').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      count += 1;
-      countEl.textContent = count;
-      btn.textContent = 'Added ✓';
-      setTimeout(function () { btn.textContent = 'Add to cart'; }, 1000);
-    });
-  });
-</script>
 </body>
 </html>
